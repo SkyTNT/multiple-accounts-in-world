@@ -1,0 +1,25 @@
+{
+  "required": true,
+  "package": "moe.fab.mc.maiw.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "ClientCommonNetworkHandlerMixin",
+    "ClientPlayerEntityMixin",
+    "ClientPlayerInteractionManagerMixin",
+    "ClientWorldMixin",
+    "GameRendererMixin",
+    "HeldItemRendererMixin",
+    "InGameHudMixin",
+    "IntegratedServerMixin",
+    "KeyBindingMixin",
+    "MessageHandlerMixin",
+    "MinecraftClientMixin",
+    "ToastManagerMixin",
+    "TutorialManagerMixin"
+  ]
+}
