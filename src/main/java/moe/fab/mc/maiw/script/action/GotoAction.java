@@ -17,6 +17,7 @@ public class GotoAction extends Action {
     @Override
     public boolean tick(ScriptContext context) {
         if(maxTimes != -1 && times >= maxTimes){
+            times = 0; //reset
             return true;
         }
         if(position - 1 == context.actionIndex) //avoid empty loop
