@@ -40,7 +40,7 @@ public class AddActionScreen extends Screen {
         GridWidget.Adder adder = grid.createAdder(2);
         positionToggle = CyclingButtonWidget.onOffBuilder(
                 Text.translatable("maiw.gui.add_action.position_toggle.end"),
-                Text.translatable("maiw.gui.add_action.position_toggle.specify")
+                Text.translatable("maiw.gui.add_action.position_toggle.specified")
         ).build(
                 0,0,150,20,
                 Text.translatable("maiw.gui.add_action.position_toggle"),(button, value) -> {

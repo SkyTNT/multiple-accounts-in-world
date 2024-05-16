@@ -212,7 +212,7 @@ public class MainScreen extends Screen {
                 joinOrLeftButton.active = false;
             }else {
                 if(playerState.online){
-                    joinOrLeftButton.setMessage(Text.translatable("maiw.gui.player_left"));
+                    joinOrLeftButton.setMessage(Text.translatable("maiw.gui.player_leave"));
                 }else {
                     joinOrLeftButton.setMessage(Text.translatable("maiw.gui.player_join"));
                 }

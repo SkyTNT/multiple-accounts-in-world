@@ -27,7 +27,7 @@ public class ServerEntryScreen  extends Screen {
 
         isAuto = CyclingButtonWidget.onOffBuilder(
                 Text.translatable("maiw.gui.server_entry.auto"),
-                Text.translatable("maiw.gui.server_entry.fixed")
+                Text.translatable("maiw.gui.server_entry.specified")
         ).build(
                 0,0,320,20,
                 Text.translatable("maiw.gui.server_entry.select"),(button, value) -> {

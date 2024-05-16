@@ -193,7 +193,7 @@ public class ScriptEditScreen extends Screen {
                             val -> Text.translatable(parameterType.enumOptions.get(val).description)
                     ).values(parameterType.enumOptions.keySet().toArray()
                     ).initially(action.getParameter(parameterType.name)
-                    ).build(0,0,54,20,Text.translatable(parameterType.description),(button, value) -> {
+                    ).build(0,0,64,20,Text.translatable(parameterType.description),(button, value) -> {
                         action.setParameter(parameterType.name, value);
                     });
                     parameterWeights.add(widget);
@@ -227,7 +227,7 @@ public class ScriptEditScreen extends Screen {
         public void render(DrawContext context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
             context.fill(x,y-2, x +entryWidth,y + entryHeight+2, (index & 1) == 0? 0x55333333: 0x55aaaaaa);
             context.drawText(textRenderer, String.valueOf(index + 1), x+4,y+4, Colors.GRAY,false);
-            nameWidget.setX(x+14);
+            nameWidget.setX(x+25);
             nameWidget.setY(y+4);
             delButton.setX(x + entryWidth - 45);
             delButton.setY(y);
