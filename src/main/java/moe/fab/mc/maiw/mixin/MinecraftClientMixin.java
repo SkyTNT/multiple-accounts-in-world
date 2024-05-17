@@ -8,6 +8,7 @@ import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService;
 import moe.fab.mc.maiw.MultipleAccountsInWorld;
 import moe.fab.mc.maiw.extension.*;
 import moe.fab.mc.maiw.fakeplayer.FakePlayer;
+import moe.fab.mc.maiw.fakeplayer.PlayerState;
 import moe.fab.mc.maiw.storage.PlayersStore;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.Mouse;
@@ -101,6 +102,9 @@ public abstract class MinecraftClientMixin  implements MinecraftClientExtension 
 
     @Shadow @Final public GameRenderer gameRenderer;
     @Shadow @Final public Mouse mouse;
+
+    @Shadow public abstract void setScreen(@Nullable Screen screen);
+
     @Unique
     boolean isFake = false;
 
@@ -326,16 +330,26 @@ public abstract class MinecraftClientMixin  implements MinecraftClientExtension 
         }
     }
 
-    @Inject(method = "joinWorld", at = @At("HEAD"))
-    private void onJoinWorld(ClientWorld world, DownloadingTerrainScreen.WorldEntryReason worldEntryReason, CallbackInfo ci) {
-
-    }
-
     @Inject(method = "setWorld", at = @At("HEAD"), cancellable = true)
     private void onSetWorld(ClientWorld world, CallbackInfo ci) {
         if (this.isFake) {
             this.world = world;
             ci.cancel();
+        }else{
+            PlayerState playerState = FakePlayer.getPlayer(this.session.getUsername());
+            if (playerState != null && playerState.client != null) {
+                playerState.client.world = this.world;
+            }
+        }
+    }
+
+    @Inject(method = "setScreen", at = @At("TAIL"), cancellable = true)
+    private void onSetScreen(Screen screen, CallbackInfo ci) {
+        if (!this.isFake) {
+            PlayerState playerState = FakePlayer.getPlayer(this.session.getUsername());
+            if (playerState != null && playerState.client != null) {
+                playerState.client.currentScreen = this.currentScreen;
+            }
         }
     }
 
